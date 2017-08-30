@@ -1,0 +1,14 @@
+{
+  "name": "mrcrawley",
+  "version": "1.0.0",
+  "description": "Web crawler for node js web apps",
+  "dependencies": {
+    "express": "^4.15.4",
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.81.0"
+  },
+  "main": "app.js",
+  "repository": "https://github.com/AMorton09/MrCrawley.git",
+  "author": "Andrew Morton <morton09@me.com>",
+  "license": "MIT"
+}
