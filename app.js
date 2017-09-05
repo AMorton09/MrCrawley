@@ -2,7 +2,20 @@ var express = require('express');
 var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
+var hbs = require('express-handlebars');
 var app     = express();
+
+
+app.engine('handlebars', hbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+
+
+app.get('/',function (req, res) {
+    res.render('home')
+})
+
+
 
 app.get('/scrape', function(req, res){
 
@@ -34,6 +47,6 @@ app.get('/scrape', function(req, res){
 
 app.listen('8080')
 
-console.log('IM ALIVE!!! i think atleast maybe sorta kinda yea its working');
+console.log('IM ALIVE!!! i think at least maybe sorta kinda yea its working');
 
 exports = module.exports = app;
