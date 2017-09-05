@@ -1,10 +1,8 @@
 var express = require('express');
-var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 var hbs = require('express-handlebars');
 var app     = express();
-
 
 app.engine('handlebars', hbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -34,18 +32,42 @@ app.get('/scrape', function(req, res){
         if(!error){
             // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
 
-            var $ = cheerio.load(html);
+            const $ = cheerio.load(html);
+
 
             // Finally, we'll define the variables we're going to capture
 
             var title, release, rating;
-            var json = { title : "", release : "", rating : ""};
+            const json = { title : "", release : "", rating : ""};
+
+
+            $('.header').filter(function(){
+                console.log("i rsn");
+                var data = $(this);
+
+                title = data.children().first().text();
+
+                release = data.children().last().children().text();
+
+                json.title = title;
+                json.release = release;
+
+
+
+            });
+
+
+
+            res.render('test',json)
+        }
+        else {
+            console.log(error)
         }
     })
 
-})
+});
 
-app.listen('8080')
+app.listen('8080');
 
 console.log('IM ALIVE!!! i think at least maybe sorta kinda yea its working');
 

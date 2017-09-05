@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Web crawler for node js web apps",
   "dependencies": {
-    "express": "^4.15.4",
     "cheerio": "^1.0.0-rc.2",
-    "request": "^2.81.0",
-    "express-handlebars": "^3.0.0"
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "request": "^2.81.0"
   },
   "scripts": {
     "test": "echo GHOST RIDER THE PATTERN IS FULL",
