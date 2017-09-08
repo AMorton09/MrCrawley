@@ -1,49 +1,32 @@
-var express = require('express');
-var request = require('request');
-var cheerio = require('cheerio');
-var hbs = require('express-handlebars');
-var app     = express();
+const express = require('express');
+const request = require('request');
+const cheerio = require('cheerio');
+const hbs = require('express-handlebars');
+const app     = express();
 
 app.engine('handlebars', hbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-
-
-app.get('/',function (req, res) {
-    res.render('home')
-})
-
-
-
-app.get('/scrape', function(req, res){
-
-    // The URL we will scrape from - in our example Anchorman 2.
-
-    url = 'http://www.imdb.com/title/tt1229340/';
-
-    // The structure of our request call
-    // The first parameter is our URL
-    // The callback function takes 3 parameters, an error, response status code and the html
-
-    request(url, function(error, response, html){
-
-        // First we'll check to make sure no errors occurred when making the request
+let scrape = (url) => {
+    request(url, (error, response, html) => {
 
         if(!error){
-            // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
-
-            const $ = cheerio.load(html);
 
 
-            // Finally, we'll define the variables we're going to capture
+            let $ = cheerio.load(html);
+            console.log("runs");
 
-            var title, release, rating;
+
+
+            let title, release, rating;
             const json = { title : "", release : "", rating : ""};
 
+           // console.log($);
 
             $('.header').filter(function(){
-                console.log("i rsn");
-                var data = $(this);
+
+                console.log("i ran");
+                let data = $(this);
 
                 title = data.children().first().text();
 
@@ -57,14 +40,29 @@ app.get('/scrape', function(req, res){
             });
 
 
+            console.log("after");
 
-            res.render('test',json)
         }
         else {
             console.log(error)
         }
     })
+}
 
+app.get('/',function (req, res) {
+    res.render('home')
+})
+
+
+
+app.get('/scrape', function(req, res){
+
+
+    let url = 'http://www.imdb.com/title/tt1229340/';
+
+    scrape(url);
+
+    res.render('test')
 });
 
 app.listen('8080');
