@@ -17,24 +17,21 @@ let scrape = (url) => {
             console.log("runs");
 
 
+            
 
-            let title, release, rating;
-            const json = { title : "", release : "", rating : ""};
 
            // console.log($);
 
-            $('.header').filter(function(){
+            $("h3[class='prof-ident-name']").each(function(){
 
                 console.log("i ran");
                 let data = $(this);
 
-                title = data.children().first().text();
+                let name = data.text();
 
-                release = data.children().last().children().text();
 
-                json.title = title;
-                json.release = release;
 
+                console.log(name);
 
 
             });
@@ -58,7 +55,7 @@ app.get('/',function (req, res) {
 app.get('/scrape', function(req, res){
 
 
-    let url = 'http://www.imdb.com/title/tt1229340/';
+    let url = 'http://www.hudl.com/profile/2102198/darie-johnson';
 
     scrape(url);
 

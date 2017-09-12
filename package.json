@@ -8,6 +8,7 @@
     "express-handlebars": "^3.0.0",
     "request": "^2.81.0"
   },
+
   "scripts": {
     "test": "echo GHOST RIDER THE PATTERN IS FULL",
     "start": "node app.js"

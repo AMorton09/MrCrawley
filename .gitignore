@@ -2,7 +2,7 @@
 #ignore packages installed by npm
 node_modules
 notgit
-
+removedcode.txt
 
 *~
 .DS_Store
