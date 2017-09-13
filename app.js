@@ -14,28 +14,18 @@ let scrape = (url) => {
 
 
             let $ = cheerio.load(html);
-            console.log("runs");
 
 
-            
+
+
 
 
            // console.log($);
 
-            $("h3[class='prof-ident-name']").each(function(){
-
-                console.log("i ran");
-                let data = $(this);
-
-                let name = data.text();
-
-
-
-                console.log(name);
-
-
-            });
-
+         let name = $(".prof-ident-name");
+         let nameStr = name.text();
+         console.log(name);
+         console.log(nameStr);
 
             console.log("after");
 
@@ -55,7 +45,7 @@ app.get('/',function (req, res) {
 app.get('/scrape', function(req, res){
 
 
-    let url = 'http://www.hudl.com/profile/2102198/darie-johnson';
+    let url = '';
 
     scrape(url);
 
